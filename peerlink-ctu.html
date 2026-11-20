@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PeerLink – CTU Main Campus</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f7fb;--sf:#fff;--ink:#0f2747;--mu:#5a6a85;--ln:#dde4f0;--br:#0f2747;--go:#f2b52c;--sk:#e6edf8;--ok:#1d7a4a;--okb:#dcf3e6;--er:#b3261e;--erb:#fde4e2;--wa:#8a5a00;--wab:#fff0c9;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1628;--sf:#122340;--ink:#eaf0fb;--mu:#9fb0cc;--ln:#243a5e;--br:#f2b52c;--sk:#1a2f52;--okb:#12382a;--erb:#41201e;--wab:#41330f;--ok:#7fe0aa;--er:#ff9d95;--wa:#f2c767}}
+:root[data-theme="dark"]{--bg:#0b1628;--sf:#122340;--ink:#eaf0fb;--mu:#9fb0cc;--ln:#243a5e;--br:#f2b52c;--sk:#1a2f52;--okb:#12382a;--erb:#41201e;--wab:#41330f;--ok:#7fe0aa;--er:#ff9d95;--wa:#f2c767}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font:16px/1.55 Figtree,system-ui,sans-serif}
+h1,h2,h3{font-family:'Bricolage Grotesque',Figtree,sans-serif;line-height:1.1;margin:0 0 .5em;letter-spacing:-.02em}
+h1{font-size:clamp(2.3rem,6vw,4.2rem);font-weight:800}h2{font-size:1.7rem}h3{font-size:1.15rem}
+p{margin:0 0 1em}a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--go);outline-offset:2px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.top{background:var(--sf);border-bottom:1px solid var(--ln);position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+.top .wrap{display:flex;align-items:center;gap:12px;height:62px}
+.logo{display:flex;align-items:center;gap:10px;font:800 1.25rem 'Bricolage Grotesque';background:none;border:0;cursor:pointer;padding:0}
+.logo i{width:32px;height:32px;border-radius:9px;background:var(--br);display:grid;place-items:center;color:var(--go);font-style:normal;font-size:1rem}
+.logo small{font:500 .78rem Figtree;color:var(--mu);display:block;line-height:1.1}
+.sp{flex:1}
+.btn{border:1.5px solid var(--ln);background:var(--sf);border-radius:10px;padding:9px 16px;cursor:pointer;font-weight:600;text-decoration:none;display:inline-block}
+.btn:hover{border-color:var(--ink)}
+.pri{background:var(--go);border-color:var(--go);color:#0f2747}
+.pri:hover{border-color:#0f2747}
+.dng{color:var(--er)}
+.sm{padding:5px 11px;font-size:.88rem}
+.hero{background:var(--br);color:#fff;padding:64px 0 72px}
+:root[data-theme="dark"] .hero,:root:not([data-theme="light"]) .hero{}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.hero p{color:#c9d6ec;font-size:1.15rem;max-width:46ch}
+.hero .btn{background:transparent;color:#fff;border-color:#4a6491}
+.hero .pri{background:var(--go);color:#0f2747;border-color:var(--go)}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.tick{background:var(--sf);color:var(--ink);border-radius:18px;padding:22px;transform:rotate(2deg);box-shadow:0 18px 40px rgba(0,0,0,.35);border-top:8px solid var(--go)}
+.tick dl{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:14px 0;font-size:.95rem}.tick dt{color:var(--mu)}.tick dd{margin:0;font-weight:600}
+.prog{display:flex;gap:6px}.prog span{flex:1;height:6px;border-radius:3px;background:var(--ln)}.prog .on{background:var(--ok)}
+.sec{padding:52px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.card{background:var(--sf);border:1px solid var(--ln);border-radius:14px;padding:20px}
+.card.cl{cursor:pointer;text-align:left;width:100%;transition:border-color .15s}.card.cl:hover{border-color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}.chip{background:var(--sk);border-radius:99px;padding:6px 14px;font-weight:500;font-size:.92rem}
+.mu{color:var(--mu)}.pill{display:inline-block;border-radius:99px;padding:2px 11px;font-size:.82rem;font-weight:600;background:var(--sk)}
+.PENDING,.NONE{background:var(--wab);color:var(--wa)}.ACCEPTED,.CONFIRMED,.COMPLETED{background:var(--okb);color:var(--ok)}.REJECTED,.DECLINED{background:var(--erb);color:var(--er)}
+.auth{max-width:470px;margin:34px auto;padding:0 16px}
+.tabs{display:flex;gap:4px;overflow-x:auto;border-bottom:1px solid var(--ln);margin-bottom:20px}
+.tabs button{background:none;border:0;padding:10px 14px;cursor:pointer;font-weight:600;color:var(--mu);border-bottom:3px solid transparent;white-space:nowrap}
+.tabs .on{color:var(--ink);border-color:var(--go)}
+label{display:block;font-weight:600;font-size:.92rem;margin:0 0 14px}
+input,select,textarea{display:block;width:100%;margin-top:5px;padding:10px 12px;border:1.5px solid var(--ln);border-radius:9px;background:var(--sf)}
+textarea{min-height:84px;resize:vertical}
+.msg{border-radius:10px;padding:10px 14px;margin-bottom:14px;font-weight:500}.msg.e{background:var(--erb);color:var(--er)}.msg.o{background:var(--okb);color:var(--ok)}
+.dash{display:grid;grid-template-columns:210px 1fr;gap:24px;padding-top:26px;padding-bottom:50px}
+.nav{display:flex;flex-direction:column;gap:4px;align-self:start;position:sticky;top:80px}
+.nav button{background:none;border:0;text-align:left;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:600;color:var(--mu)}
+.nav .on{background:var(--sf);color:var(--ink);box-shadow:inset 4px 0 0 var(--go)}
+.list{display:grid;gap:10px}.item{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.item b{display:block}
+.slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:8px}
+.slots button{padding:10px 6px;border:1.5px solid var(--ln);border-radius:9px;background:var(--sf);cursor:pointer;font-weight:600}
+.slots .on{background:var(--ok);border-color:var(--ok);color:#fff}.slots button:hover{border-color:var(--ink)}
+.slots .bk{opacity:.5;cursor:not-allowed}
+dl.kv{display:grid;grid-template-columns:130px 1fr;gap:6px 12px;margin:0 0 16px}dl.kv dt{color:var(--mu)}dl.kv dd{margin:0;font-weight:600}
+.steps{display:flex;gap:6px;margin-bottom:20px}.steps span{flex:1;height:6px;border-radius:3px;background:var(--ln)}.steps .on{background:var(--go)}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:11px 20px;border-radius:99px;font-weight:600;z-index:9;max-width:90vw}
+footer{padding:28px 0;color:var(--mu);font-size:.9rem;border-top:1px solid var(--ln)}
+@media(max-width:760px){.hero .wrap,.dash{grid-template-columns:1fr}.nav{flex-direction:row;overflow-x:auto;position:static}.nav button{white-space:nowrap}.tick{transform:none}dl.kv{grid-template-columns:100px 1fr}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div id="app"></div><div id="toast"></div>
+<script>
+const SUBJ=['Introduction to Computing','Programming 1','Multimedia','Reading in Philippine History','Mathematics in the Modern World','The Entrepreneurial Mind','Physical Activities','National Service Training Program (NSTP)'];
+const HRS=[6,7,8,9,10,11,13,14,15,16,17,18,19,20,21],CATS=['Account and Login Problems','Booking Problems','Service Provider Problems','Other Concerns'],ADMIN_CODE='PEERLINK-ADMIN-2026';
+const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fh=h=>`${h%12||12}:00 ${h<12?'AM':'PM'}`,iso=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const dates=()=>[1,2,3].map(n=>{const d=new Date();d.setDate(d.getDate()+n);return iso(d)});
+const fd=s=>new Date(s+'T00:00').toLocaleDateString('en-US',{weekday:'short',month:'long',day:'numeric',year:'numeric'});
+const allSl=()=>{const a=[];for(let d=0;d<3;d++)HRS.forEach(h=>a.push(d+'|'+h));return a};
+const P=(status,subj,skills,exp)=>({status,subj,intro:'I am interested in helping fellow students.',skills,exp,sched:status==='ACCEPTED'?allSl():[]});
+const seed=()=>({students:[{id:'123456',name:'Paul Chim Nicart',course:'BSIT',year:1,pw:'Pass1234',prov:P('ACCEPTED',1,'C Programming','Helping classmates with programming.')},{id:'123458',name:'Maria Santos',course:'BSIT',year:1,pw:'Pass1234',prov:P('ACCEPTED',2,'Photo and video editing','Edited school event videos.')},{id:'123457',name:'Juan Dela Cruz',course:'BSIT',year:1,pw:'Pass1234',prov:P('PENDING',2,'Graphic design','Made posters for our org.')},{id:'100100',name:'Ana Reyes',course:'BSIT',year:2,pw:'Pass1234',prov:null}],admins:[{id:'10001',name:'Admin One',user:'admin01',pw:'Admin1234'}],bookings:[],fb:[],gen:[],help:[]});
+let mem=null;const load=()=>{try{const x=localStorage.getItem('peerlink_ctu');if(x)return JSON.parse(x)}catch(e){}return mem||seed()};
+const save=()=>{mem=DB;try{localStorage.setItem('peerlink_ctu',JSON.stringify(DB))}catch(e){}};
+let DB=load(),S={view:'home',tab:'login',ad:'login',user:null,page:'home',sub:'pending',sel:null,bk:{step:1},app:null,hf:null,fbt:'help',err:'',ok:''};
+const A={},F={},stu=id=>DB.students.find(s=>s.id===id),bk=i=>DB.bookings[i],me=()=>S.user.role==='student'?stu(S.user.id):DB.admins.find(a=>a.id===S.user.id);
+const taken=(pid,d,h)=>DB.bookings.some(b=>b.prov===pid&&b.date===d&&b.hour===h&&b.status!=='DECLINED');
+const free=(p,d,h)=>p.prov&&p.prov.status==='ACCEPTED'&&p.prov.sched.includes(dates().indexOf(d)+'|'+h)&&!taken(p.id,d,h);
+const avg=p=>{const r=DB.fb.filter(f=>f.type==='cust'&&bk(f.bk).prov===p.id);return r.length?(r.reduce((a,f)=>a+f.rating,0)/r.length).toFixed(1)+' / 5.0 ('+r.length+')':'No ratings yet'};
+const pw_ok=p=>p.length>=8&&/[A-Z]/.test(p)&&/\d/.test(p),pill=s=>`<span class="pill ${s}">${s==='NONE'?'NO APPLICATION':s}</span>`;
+function go(o){Object.assign(S,{err:'',ok:''},o);render();scrollTo(0,0)}
+function toast(t){const e=$('#toast');e.innerHTML=`<div class="toast" role="status">${esc(t)}</div>`;setTimeout(()=>e.innerHTML='',2600)}
+const msg=()=>(S.err?`<div class="msg e" role="alert">${esc(S.err)}</div>`:'')+(S.ok?`<div class="msg o">${esc(S.ok)}</div>`:'');
+const fld=(n,l,t='text',v='')=>`<label>${l}<input name="${n}" type="${t}" value="${esc(v)}" required autocomplete="off"></label>`;
+const tabs=(arr,cur,act)=>`<div class="tabs" role="tablist">${arr.map(([k,l])=>`<button role="tab" class="${k===cur?'on':''}" data-a="${act}" data-v="${k}">${l}</button>`).join('')}</div>`;
+
+/* ---------- shell ---------- */
+function shell(body,right=''){return `<header class="top"><div class="wrap"><button class="logo" data-a="home"><i>P</i><span>PeerLink<small>CTU Main Campus</small></span></button><span class="sp"></span>${right}</div></header>${body}`}
+function render(){let h;if(S.user&&S.user.role==='student')h=stuDash();else if(S.user)h=admDash();else h=S.view==='auth'?authV():home();$('#app').innerHTML=h}
+function home(){return shell(`<section class="hero"><div class="wrap"><div><h1>Stuck on a subject? A classmate can help.</h1><p>PeerLink connects CTU Main Campus students with approved student tutors. Pick a day, a time and a subject, and book in under a minute.</p><div class="row"><button class="btn pri" data-a="auth" data-v="login">Log in as student</button><button class="btn" data-a="auth" data-v="register">Create account</button></div></div>
+<div class="tick" aria-label="Sample booking"><b>Booking BK-0001</b><dl><dt>Subject</dt><dd>Programming 1</dd><dt>Tutor</dt><dd>Paul Chim Nicart</dd><dt>When</dt><dd>Tomorrow, 8:00 AM</dd></dl><div class="prog"><span class="on"></span><span class="on"></span><span></span></div><p class="mu" style="margin:8px 0 0;font-size:.85rem">Pending, Confirmed, Completed</p></div></div></section>
+<section class="sec wrap"><h2>How it works</h2><div class="grid"><div class="card"><h3>1. Book</h3><p class="mu">Choose a date, an open time and the subject you need. We only show tutors who are free then.</p></div><div class="card"><h3>2. Learn</h3><p class="mu">The tutor confirms, you meet on campus, and the session is marked completed.</p></div><div class="card"><h3>3. Rate</h3><p class="mu">Both of you leave a rating from 1 to 5. Ratings help the next student choose.</p></div></div></section>
+<section class="sec wrap" style="padding-top:0"><h2>Eight subjects, one place</h2><div class="chips">${SUBJ.map(s=>`<span class="chip">${s}</span>`).join('')}</div><p class="mu" style="margin-top:18px">Open daily, 6:00 AM to 10:00 PM. Want to tutor? Log in and apply as a Service Provider.</p></section>
+<footer><div class="wrap">PeerLink is a student concept project for Cebu Technological University, Main Campus. Not an official CTU service.</div></footer>`,`<button class="btn sm" data-a="auth" data-v="help">Help and feedback</button><button class="btn sm" data-a="auth" data-v="admin">Admin portal</button><button class="btn sm pri" data-a="auth" data-v="login">Log in</button>`)}
+
+/* ---------- auth ---------- */
+function authV(){const t=S.tab;let b='';
+if(t==='login')b=`<form data-f="login"><h2>Student login</h2>${msg()}${fld('id','Student ID')}${fld('pw','Password','password')}<button class="btn pri">Log in</button><p class="mu" style="margin-top:14px">No account? <a href="#" data-a="auth" data-v="register">Register</a>. Demo: 123456 / Pass1234</p></form>`;
+if(t==='register')b=`<form data-f="reg"><h2>Create your account</h2>${msg()}${fld('name','Full name')}${fld('course','Course')}<label>Year level<select name="year">${[1,2,3,4].map(y=>`<option>${y}</option>`).join('')}</select></label>${fld('id','Student ID')}${fld('pw','Password','password')}${fld('pw2','Confirm password','password')}<p class="mu" style="font-size:.88rem">At least 8 characters, 1 uppercase letter, 1 number.</p><button class="btn pri">Create account</button></form>`;
+if(t==='admin'){if(S.ad==='login')b=`<form data-f="alogin"><h2>Admin login</h2>${msg()}${fld('id','Admin ID')}${fld('pw','Password','password')}<button class="btn pri">Log in</button> <button type="button" class="btn" data-a="ad" data-v="code">Register admin</button><p class="mu" style="margin-top:14px">Demo: 10001 / Admin1234</p></form>`;
+else if(S.ad==='code')b=`<form data-f="acode"><h2>Verify registration code</h2>${msg()}${fld('code','Admin registration code','password')}<button class="btn pri">Verify code</button> <button type="button" class="btn" data-a="ad" data-v="login">Back</button><p class="mu" style="margin-top:14px">Demo code: ${ADMIN_CODE}</p></form>`;
+else b=`<form data-f="areg"><h2>Admin registration</h2>${msg()}${fld('name','Full name')}${fld('id','Admin ID')}${fld('user','Username')}${fld('pw','Password','password')}${fld('pw2','Confirm password','password')}<button class="btn pri">Create admin account</button></form>`}
+if(t==='help')b=S.hf?`<h2>Help and feedback</h2>${fbHub(S.hf)}`:`<form data-f="hid"><h2>Help and feedback</h2>${msg()}<p class="mu">Enter your Student ID to continue.</p>${fld('id','Student ID')}<button class="btn pri">Continue</button></form>`;
+return shell(`<div class="auth">${tabs([['login','Student'],['register','Register'],['admin','Admin'],['help','Help']],t,'auth')}<div class="card">${b}</div></div>`,`<button class="btn sm" data-a="home">Back to site</button>`)}
+A.home=()=>{S.hf=null;go({view:'home',user:null})};A.auth=v=>go({view:'auth',tab:v,ad:'login',hf:v==='help'?S.hf:null});A.ad=v=>go({ad:v});
+F.login=d=>{const s=stu(d.id.trim());if(!s)return go({err:'Account not found. That Student ID is not registered.'});if(s.pw!==d.pw)return go({err:'Incorrect password. Your Student ID is recognized, try again.'});go({user:{role:'student',id:s.id},page:'home',app:null,bk:{step:1}})};
+F.reg=d=>{if(stu(d.id.trim()))return go({tab:'register',err:'That Student ID is already registered.'});if(d.pw!==d.pw2)return go({tab:'register',err:'Passwords do not match.'});if(!pw_ok(d.pw))return go({tab:'register',err:'Password needs 8+ characters, 1 uppercase letter and 1 number.'});DB.students.push({id:d.id.trim(),name:d.name.trim(),course:d.course.trim(),year:+d.year,pw:d.pw,prov:null});save();go({tab:'login',ok:'Account created. You can log in now.'})};
+F.alogin=d=>{const a=DB.admins.find(x=>x.id===d.id.trim());if(!a)return go({err:'Admin account not found.'});if(a.pw!==d.pw)return go({err:'Incorrect password.'});go({user:{role:'admin',id:a.id},page:'prov',sub:'pending',sel:null})};
+F.acode=d=>d.code===ADMIN_CODE?go({ad:'form',ok:'Code verified. Create the administrator account.'}):go({err:'Invalid registration code. Only authorized users can register an admin.'});
+F.areg=d=>{if(DB.admins.some(a=>a.id===d.id))return go({ad:'form',err:'Admin ID already exists.'});if(DB.admins.some(a=>a.user===d.user))return go({ad:'form',err:'Username already exists.'});if(d.pw!==d.pw2)return go({ad:'form',err:'Passwords do not match.'});if(!pw_ok(d.pw))return go({ad:'form',err:'Password needs 8+ characters, 1 uppercase letter and 1 number.'});DB.admins.push({id:d.id,name:d.name,user:d.user,pw:d.pw});save();go({ad:'login',ok:'Admin account created. Log in with your Admin ID.'})};
+F.hid=d=>stu(d.id.trim())?go({hf:d.id.trim(),fbt:'help'}):go({err:'Student ID not found. Check it and try again.'});
+
+/* ---------- help + feedback (student) ---------- */
+function stars(n){return n?'★'.repeat(n)+'☆'.repeat(5-n):''}
+const rate=`<label>Rating<select name="rating">${[5,4,3,2,1].map(n=>`<option value="${n}">${n}.0 ${['','Poor','Fair','Good','Very good','Excellent'][n]}</option>`).join('')}</select></label>`;
+function fbHub(sid){const t=S.fbt;let b='';const done=type=>DB.bookings.map((x,i)=>[x,i]).filter(([x,i])=>x.status==='COMPLETED'&&(type==='cust'?x.cust===sid&&!DB.fb.some(f=>f.bk===i&&f.type==='cust'):x.prov===sid&&!DB.fb.some(f=>f.bk===i&&f.type==='prov')));
+if(t==='help')b=`<form data-f="help"><h3>Submit a help request</h3>${msg()}<label>Category<select name="cat">${CATS.map((c,i)=>`<option value="${i}">${c}</option>`).join('')}</select></label><label>Your concern<textarea name="m" required></textarea></label><button class="btn pri">Send request</button></form>`;
+if(t==='cust'||t==='prov'){const l=done(t);b=`<h3>${t==='cust'?'Rate a tutor':'Rate a customer'}</h3>${msg()}`+(l.length?`<form data-f="fb"><input type="hidden" name="type" value="${t}"><label>Completed booking<select name="bk">${l.map(([x,i])=>`<option value="${i}">BK-${String(i+1).padStart(4,'0')} · ${SUBJ[x.subj]} · ${esc(stu(t==='cust'?x.prov:x.cust).name)}</option>`).join('')}</select></label>${rate}<label>Comment<textarea name="m"></textarea></label><button class="btn pri">Submit feedback</button></form>`:`<p class="mu">No completed bookings waiting for a rating.</p>`)}
+if(t==='gen')b=`<form data-f="gen"><h3>Tell us about PeerLink</h3>${msg()}${rate}<label>Feedback or suggestion<textarea name="m" required></textarea></label><button class="btn pri">Submit feedback</button></form>`;
+return tabs([['help','Help request'],['cust','Rate a tutor'],['prov','Rate a customer'],['gen','About PeerLink']],t,'fbt')+`<p class="mu">Student ID: ${esc(sid)}</p>`+b}
+A.fbt=v=>go({fbt:v});
+const sid=()=>S.hf||S.user.id;
+F.help=d=>{DB.help.push({sid:sid(),cat:+d.cat,m:d.m,status:'PENDING'});save();go({ok:'Help request sent. Status: PENDING. An admin will review it.'})};
+F.gen=d=>{DB.gen.push({sid:sid(),rating:+d.rating,m:d.m});save();go({ok:'Thank you! Your feedback was submitted.'})};
+F.fb=d=>{DB.fb.push({bk:+d.bk,type:d.type,rating:+d.rating,m:d.m});save();go({ok:'Feedback submitted. It is linked to the booking and visible to admins.'})};
+
+/* ---------- student dashboard ---------- */
+const NAVS=[['home','Dashboard'],['prov','Service provider'],['book','Book a service'],['mine','My bookings'],['help','Help and feedback'],['prof','My profile'],['out','Log out']];
+function stuDash(){const u=me();let b='';const p=S.page;
+if(p==='home')b=`<h2>Welcome, ${esc(u.name.split(' ')[0])}</h2><p class="mu">What would you like to do today?</p><div class="grid">${[['prov','Service provider','Apply to tutor or manage your service.'],['book','Book a service','Find a tutor by date, time and subject.'],['mine','My bookings','Track status and leave ratings.'],['prof','My profile','See your account details.']].map(([k,t,d])=>`<button class="card cl" data-a="pg" data-v="${k}"><h3>${t}</h3><span class="mu">${d}</span></button>`).join('')}</div>`;
+if(p==='prof')b=`<h2>My profile</h2><div class="card"><dl class="kv"><dt>Full name</dt><dd>${esc(u.name)}</dd><dt>Course</dt><dd>${esc(u.course)}</dd><dt>Year level</dt><dd>${u.year}</dd><dt>Student ID</dt><dd>${esc(u.id)}</dd></dl></div>`;
+if(p==='prov')b=provV(u);if(p==='book')b=bookV(u);if(p==='mine')b=mineV(u);
+if(p==='help')b=`<h2>Help and feedback</h2><div class="card">${fbHub(u.id)}</div>`;
+if(p==='out')b=`<h2>Log out?</h2><p>Are you sure you want to log out?</p><button class="btn pri" data-a="logout">Yes, log out</button> <button class="btn" data-a="pg" data-v="home">No, return to dashboard</button>`;
+return shell(`<div class="wrap dash"><nav class="nav" aria-label="Dashboard">${NAVS.map(([k,l])=>`<button class="${k===p?'on':''}" data-a="pg" data-v="${k}">${l}</button>`).join('')}</nav><main>${b}</main></div>`,`<span class="mu">${esc(u.name)}</span>`)}
+A.pg=v=>go({page:v,bk:{step:1},app:null,fbt:'help'});A.logout=()=>{toast('You have been logged out. Thank you for using PeerLink!');S.hf=null;go({user:null,view:'home'})};
+
+function provV(u){const pv=u.prov;
+if(S.app){const a=S.app;if(a.rev)return `<h2>Review application</h2><div class="card"><dl class="kv"><dt>Name</dt><dd>${esc(u.name)}</dd><dt>Student ID</dt><dd>${u.id}</dd><dt>Introduction</dt><dd>${esc(a.intro)}</dd><dt>Skills</dt><dd>${esc(a.skills)}</dd><dt>Experience</dt><dd>${esc(a.exp)}</dd><dt>Subject to teach</dt><dd>${SUBJ[a.subj]}</dd></dl><button class="btn pri" data-a="submitapp">Submit application</button> <button class="btn" data-a="editapp">Edit information</button> <button class="btn dng" data-a="pg" data-v="prov">Cancel</button></div>`;
+return `<h2>Apply as a Service Provider</h2><form class="card" data-f="app">${msg()}<label>Personal introduction<textarea name="intro" required>${esc(a.intro)}</textarea></label><label>Skills<input name="skills" value="${esc(a.skills)}" required></label><label>Experience<input name="exp" value="${esc(a.exp)}" required></label><label>Subject to teach<select name="subj">${SUBJ.map((s,i)=>`<option value="${i}" ${a.subj==i?'selected':''}>${s}</option>`).join('')}</select></label><button class="btn pri">Review application</button> <button type="button" class="btn" data-a="pg" data-v="prov">Cancel</button></form>`}
+if(!pv||pv.status==='REJECTED')return `<h2>Service provider</h2>${pv?`<p class="msg e">Your last application was rejected. You remain a registered student and may apply again.</p>`:''}<div class="card"><h3>Offer your help as a tutor</h3><p class="mu">Fill in your introduction, skills and the subject you want to teach. An admin reviews every application.</p><button class="btn pri" data-a="startapp">Apply for Service Provider</button></div>`;
+if(pv.status==='PENDING')return `<h2>Service provider</h2><div class="card"><p>Application status: ${pill('PENDING')}</p><p class="mu">Subject: ${SUBJ[pv.subj]}. You may be notified about an interview. Once accepted you can set your schedule.</p></div>`;
+const ds=dates(),mine=DB.bookings.map((b,i)=>[b,i]).filter(([b])=>b.prov===u.id);
+return `<h2>My service</h2><div class="card"><p>${pill('ACCEPTED')} Teaching <b>${SUBJ[pv.subj]}</b> · ${avg(u)}</p></div><h3 style="margin-top:22px">My available times</h3><p class="mu">Tap a time to turn it on or off. Booked times are locked.</p>${ds.map((d,di)=>`<div class="card" style="margin-bottom:10px"><b>${fd(d)}</b><div class="slots" style="margin-top:10px">${HRS.map(h=>{const k=di+'|'+h,t=taken(u.id,d,h);return `<button class="${t?'bk':pv.sched.includes(k)?'on':''}" ${t?'disabled':''} data-a="slot" data-v="${k}">${fh(h)}</button>`}).join('')}</div></div>`).join('')}<h3 style="margin-top:22px">Bookings made with me</h3><div class="list">${mine.length?mine.map(([b,i])=>bkCard(b,i,'prov')).join(''):'<p class="mu">No bookings yet.</p>'}</div>`}
+A.startapp=()=>go({app:{intro:'',skills:'',exp:'',subj:0}});A.editapp=()=>{S.app.rev=0;go({})};
+F.app=d=>go({app:{intro:d.intro,skills:d.skills,exp:d.exp,subj:+d.subj,rev:1}});
+A.submitapp=()=>{const a=S.app,u=me();u.prov={status:'PENDING',subj:a.subj,intro:a.intro,skills:a.skills,exp:a.exp,sched:[]};save();go({app:null,ok:''});toast('Application submitted. Status: PENDING')};
+A.slot=k=>{const s=me().prov.sched,i=s.indexOf(k);i<0?s.push(k):s.splice(i,1);save();render()};
+
+function bkCard(b,i,as){const o=stu(as==='prov'?b.cust:b.prov);let acts='';
+if(as==='prov'){if(b.status==='PENDING')acts=`<button class="btn sm pri" data-a="bst" data-v="${i}|CONFIRMED">Confirm</button><button class="btn sm dng" data-a="bst" data-v="${i}|DECLINED">Decline</button>`;if(b.status==='CONFIRMED')acts=`<button class="btn sm pri" data-a="bst" data-v="${i}|COMPLETED">Mark completed</button>`}
+else if(b.status==='COMPLETED'&&!DB.fb.some(f=>f.bk===i&&f.type==='cust'))acts=`<button class="btn sm pri" data-a="rateb">Rate tutor</button>`;
+return `<div class="card item"><div><b>BK-${String(i+1).padStart(4,'0')} · ${SUBJ[b.subj]}</b><span class="mu">${as==='prov'?'Customer':'Tutor'}: ${esc(o.name)} · ${fd(b.date)}, ${fh(b.hour)}</span></div><div>${pill(b.status)} ${acts}</div></div>`}
+A.bst=v=>{const[i,s]=v.split('|');bk(+i).status=s;save();render();toast(s==='COMPLETED'?'Marked completed. Both of you can now rate.':'Booking '+s.toLowerCase())};
+A.rateb=()=>go({page:'help',fbt:'cust'});
+function mineV(u){const l=DB.bookings.map((b,i)=>[b,i]).filter(([b])=>b.cust===u.id);return `<h2>My bookings</h2><div class="list">${l.length?l.map(([b,i])=>bkCard(b,i,'cust')).join(''):'<div class="card"><p class="mu">No bookings yet. Book your first session.</p><button class="btn pri" data-a="pg" data-v="book">Book a service</button></div>'}</div>`}
+
+/* ---------- booking wizard ---------- */
+function bookV(u){const w=S.bk,st=w.step,ds=dates();let b='';const back=`<button class="btn" data-a="bstep" data-v="${st-1}">Back</button>`;
+const cands=()=>DB.students.filter(p=>p.id!==u.id&&p.prov&&p.prov.subj===w.subj&&free(p,w.date,w.hour));
+if(st===1)b=`<h3>Choose a date</h3><p class="mu">Open daily, 6:00 AM to 10:00 PM.</p><div class="list">${ds.map(d=>`<button class="card cl" data-a="bset" data-v="date|${d}">${fd(d)}</button>`).join('')}</div>`;
+if(st===2){const hs=HRS.filter(h=>DB.students.some(p=>p.id!==u.id&&free(p,w.date,h)));b=`<h3>Pick a time on ${fd(w.date)}</h3>${hs.length?`<div class="slots">${hs.map(h=>`<button data-a="bset" data-v="hour|${h}">${fh(h)}</button>`).join('')}</div>`:'<p class="msg e">No tutors are free on this date. Choose another date.</p>'}<p style="margin-top:16px">${back}</p>`}
+if(st===3)b=`<h3>What do you need help with?</h3><div class="list">${SUBJ.map((s,i)=>`<button class="card cl" data-a="bset" data-v="subj|${i}">${s}</button>`).join('')}</div><p style="margin-top:16px">${back}</p>`;
+if(st===4){const c=cands();b=`<h3>Available tutors</h3><p class="mu">${SUBJ[w.subj]} · ${fd(w.date)}, ${fh(w.hour)}</p>${c.length?`<div class="list">${c.map(p=>`<button class="card cl item" data-a="bset" data-v="prov|${p.id}"><span><b>${esc(p.name)}</b><span class="mu">${avg(p)}</span></span>${pill('ACCEPTED')}</button>`).join('')}</div>`:'<p class="msg e">No tutor offers this subject at that time. Go back and pick another subject or time.</p>'}<p style="margin-top:16px">${back}</p>`}
+const p=stu(w.prov);
+if(st===5)b=`<h3>Tutor profile</h3><div class="card"><dl class="kv"><dt>Full name</dt><dd>${esc(p.name)}</dd><dt>Student ID</dt><dd>${p.id}</dd><dt>Subject</dt><dd>${SUBJ[p.prov.subj]}</dd><dt>Introduction</dt><dd>${esc(p.prov.intro)}</dd><dt>Skills</dt><dd>${esc(p.prov.skills)}</dd><dt>Experience</dt><dd>${esc(p.prov.exp)}</dd><dt>Rating</dt><dd>${avg(p)}</dd></dl><button class="btn pri" data-a="bstep" data-v="6">Book this service</button> ${back}</div>`;
+if(st===6)b=`<h3>Review your booking</h3>${msg()}<div class="card"><dl class="kv"><dt>Customer</dt><dd>${esc(u.name)} (${u.id})</dd><dt>Tutor</dt><dd>${esc(p.name)} (${p.id})</dd><dt>Subject</dt><dd>${SUBJ[w.subj]}</dd><dt>Date</dt><dd>${fd(w.date)}</dd><dt>Time</dt><dd>${fh(w.hour)}</dd></dl><button class="btn pri" data-a="confirmbk">Confirm booking</button> <button class="btn dng" data-a="bstep" data-v="4">Cancel</button></div>`;
+if(st===7)b=`<div class="card"><h2>Booking submitted</h2><p>Your booking ID is <b>BK-${String(w.id+1).padStart(4,'0')}</b>. Status: ${pill('PENDING')}</p><p class="mu">The tutor will confirm your request. Track it in My bookings.</p><button class="btn pri" data-a="pg" data-v="mine">View my bookings</button></div>`;
+return `<h2>Book a service</h2><div class="steps">${[1,2,3,4,5,6].map(n=>`<span class="${n<=Math.min(st,6)?'on':''}"></span>`).join('')}</div>${b}`}
+A.bstep=v=>go({bk:{...S.bk,step:+v}});A.bset=v=>{const[k,x]=v.split('|'),w={...S.bk};w[k]=k==='hour'||k==='subj'?+x:x;w.step={date:2,hour:3,subj:4,prov:5}[k];go({bk:w})};
+A.confirmbk=()=>{const w=S.bk,p=stu(w.prov);if(!free(p,w.date,w.hour))return go({bk:{...w,step:4},err:'That time was just taken. Choose another tutor or time.'});DB.bookings.push({cust:S.user.id,prov:w.prov,subj:w.subj,date:w.date,hour:w.hour,status:'PENDING'});save();go({bk:{...w,step:7,id:DB.bookings.length-1}})};
+
+/* ---------- admin ---------- */
+const ANAV=[['prov','Service providers'],['stu','Registered students'],['adm','Admin profiles'],['fb','Feedback and help'],['out','Log out']];
+function admDash(){const u=me(),p=S.page;let b='';
+if(p==='prov'){const l=DB.students.filter(s=>s.prov&&s.prov.status===S.sub.toUpperCase());
+if(S.sel){const s=stu(S.sel),a=s.prov;b=`<button class="btn sm" data-a="sel" data-v="">Back to list</button><h2 style="margin-top:14px">Application details</h2><div class="card"><dl class="kv"><dt>Applicant</dt><dd>${esc(s.name)}</dd><dt>Student ID</dt><dd>${s.id}</dd><dt>Course</dt><dd>${esc(s.course)}, year ${s.year}</dd><dt>Introduction</dt><dd>${esc(a.intro)}</dd><dt>Skills</dt><dd>${esc(a.skills)}</dd><dt>Experience</dt><dd>${esc(a.exp)}</dd><dt>Subject</dt><dd>${SUBJ[a.subj]}</dd><dt>Status</dt><dd>${pill(a.status)}</dd></dl>${a.status==='PENDING'?`<button class="btn pri" data-a="decide" data-v="ACCEPTED">Accept application</button> <button class="btn dng" data-a="decide" data-v="REJECTED">Reject application</button>`:''}</div>`}
+else b=`<h2>Service providers</h2>${tabs([['pending','Pending'],['accepted','Accepted'],['rejected','Rejected']],S.sub,'sub')}<div class="list">${l.length?l.map(s=>`<button class="card cl item" data-a="sel" data-v="${s.id}"><span><b>${esc(s.name)}</b><span class="mu">ID ${s.id} · ${SUBJ[s.prov.subj]}</span></span>${pill(s.prov.status)}</button>`).join(''):'<p class="mu">No applications in this list.</p>'}</div>`}
+if(p==='stu')b=`<h2>Registered students</h2><div class="list">${DB.students.map(s=>`<div class="card item"><span><b>${esc(s.name)}</b><span class="mu">ID ${s.id} · ${esc(s.course)}, year ${s.year}</span></span>${pill(s.prov?s.prov.status:'NONE')}</div>`).join('')}</div>`;
+if(p==='adm')b=`<h2>Admin profiles</h2><div class="list">${DB.admins.map(a=>`<div class="card"><b>${esc(a.name)}</b><span class="mu"> · Admin ID ${a.id} · ${esc(a.user)}</span></div>`).join('')}</div>`;
+if(p==='fb'){const t=S.fbt==='help'?'help':S.fbt,bid=i=>'BK-'+String(i+1).padStart(4,'0'),row=(h,s)=>`<div class="card"><b>${h}</b><p class="mu" style="margin:4px 0 0">${s}</p></div>`;
+const bl=ty=>DB.fb.filter(f=>f.type===ty).map(f=>{const x=bk(f.bk),fr=stu(ty==='cust'?x.cust:x.prov),to=stu(ty==='cust'?x.prov:x.cust);return row(`${bid(f.bk)} · ${stars(f.rating)}`,`${esc(fr.name)} rated ${esc(to.name)}. ${esc(f.m)||'No comment.'}`)}).join('')||'<p class="mu">Nothing submitted yet.</p>';
+const c={cust:bl('cust'),prov:bl('prov'),gen:DB.gen.map(g=>row(stars(g.rating),`Student ${g.sid}: ${esc(g.m)}`)).join('')||'<p class="mu">Nothing submitted yet.</p>',help:DB.help.map((h,i)=>row(`${CATS[h.cat]} ${pill(h.status)}`,`Student ${h.sid}: ${esc(h.m)} ${h.status==='PENDING'?`<button class="btn sm" data-a="rev" data-v="${i}">Mark reviewed</button>`:''}`)).join('')||'<p class="mu">Nothing submitted yet.</p>'}[t];
+b=`<h2>Feedback and help</h2>${tabs([['cust','Customer'],['prov','Service provider'],['gen','General'],['help','Help requests']],t,'fbt')}<div class="list">${c}</div>`}
+if(p==='out')b=`<h2>Log out?</h2><button class="btn pri" data-a="logout">Yes, log out</button> <button class="btn" data-a="pg" data-v="prov">Cancel</button>`;
+return shell(`<div class="wrap dash"><nav class="nav" aria-label="Admin">${ANAV.map(([k,l])=>`<button class="${k===p?'on':''}" data-a="apg" data-v="${k}">${l}</button>`).join('')}</nav><main>${b}</main></div>`,`<span class="mu">Admin: ${esc(u.name)}</span>`)}
+A.apg=v=>go({page:v,sel:null,fbt:v==='fb'?'cust':'help'});A.sub=v=>go({sub:v,sel:null});A.sel=v=>go({sel:v||null});
+A.decide=v=>{const s=stu(S.sel);s.prov.status=v;if(v==='ACCEPTED'&&!s.prov.sched.length)s.prov.sched=allSl();save();toast(`Application ${v.toLowerCase()}: ${s.name}`);go({sel:null,sub:v.toLowerCase()==='accepted'?'accepted':'rejected'})};
+A.rev=v=>{DB.help[+v].status='REVIEWED';save();render()};
+
+/* ---------- events ---------- */
+document.addEventListener('click',e=>{const a=e.target.closest('[data-a]');if(!a)return;e.preventDefault();A[a.dataset.a]&&A[a.dataset.a](a.dataset.v)});
+document.addEventListener('submit',e=>{const f=e.target.closest('[data-f]');if(!f)return;e.preventDefault();F[f.dataset.f](Object.fromEntries(new FormData(f)))});
+render();
+</script>
+</body>
+</html>
